@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.1" type="plugin" group="content" method="upgrade">
+	<name>PLG_CONTENT_FTDAPI</name>
+	<author>Christian Hent</author>
+	<creationDate>April 2015</creationDate>
+	<copyright>Copyright (C) tec-promotion GmbH. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>hent.dev@googlemail.com</authorEmail>
+	<authorUrl>http://www.tec-promotion.de</authorUrl>
+	<version>1.9.3</version>
+	<description>PLG_CONTENT_FTDAPI_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="ftdapi">ftdapi.php</filename>
+		<filename>index.html</filename>
+		<folder>layouts</folder>
+		<folder>cache</folder>
+	</files>
+	<media folder="media" destination="plg_content_ftdapi">
+            <filename>index.html</filename>
+            <folder>css</folder>
+            <folder>js</folder>
+    </media>
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.plg_content_ftdapi.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.plg_content_ftdapi.sys.ini</language>
+		<language tag="de-DE">language/de-DE/de-DE.plg_content_ftdapi.ini</language>
+		<language tag="de-DE">language/de-DE/de-DE.plg_content_ftdapi.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+			</fieldset>
+			<fieldset name="api" label="PLG_CONTENT_FTDAPI_API_FIELDSET_LBL">
+				<field
+					name="token"
+					type="text"
+					class="btn-group"
+					default="0"
+					label="PLG_CONTENT_FTDAPI_TOKEN_LBL"
+					description="PLG_CONTENT_FTDAPI_TOKEN_DESC"
+					required="required"
+				/>
+				<field
+					name="time_interval"
+					type="list"
+					class="btn-group"
+					default="week"
+					label="PLG_CONTENT_FTDAPI_TIMEINTERVAL_LBL"
+					description="PLG_CONTENT_FTDAPI_TIMEINTERVAL_DESC">
+					<option value="today">PLG_CONTENT_FTDAPI_TIMEINTERVAL_TODAY</option>
+            		<option value="tomorrow">PLG_CONTENT_FTDAPI_TIMEINTERVAL_TOMORROW</option>
+            		<option value="twodays">PLG_CONTENT_FTDAPI_TIMEINTERVAL_2DAYS</option>
+            		<option value="week">PLG_CONTENT_FTDAPI_TIMEINTERVAL_1WEEK</option>
+            	</field>
+				<field
+					name="cache"
+					type="text"
+					class="btn-group"
+					default="360"
+					label="PLG_CONTENT_FTDAPI_CACHE_LBL"
+					description="PLG_CONTENT_FTDAPI_CACHE_DESC"
+				/>
+			</fieldset>
+			<fieldset name="display" label="PLG_CONTENT_FTDAPI_DISPLAY_FIELDSET_LBL">
+				<field
+					name="layout"
+					type="list"
+					class="btn-group"
+					default="0"
+					label="PLG_CONTENT_FTDAPI_LAYOUT_LBL"
+					description="PLG_CONTENT_FTDAPI_LAYOUT_DESC">
+					<option value="0">PLG_CONTENT_FTDAPI_LAYOUT_REGION</option>
+            		<option value="1">PLG_CONTENT_FTDAPI_LAYOUT_PROVIDER</option>
+            		<option value="2">PLG_CONTENT_FTDAPI_LAYOUT_TRUCK</option>
+            	</field>
+            	<field
+					name="truck_id"
+					type="text"
+					class="btn-group"
+					default="0"
+					label="PLG_CONTENT_FTDAPI_TRUCKID_LBL"
+					description="PLG_CONTENT_FTDAPI_TRUCKID_DESC"
+				/>
+				<field
+					name="included_articles"
+					type="textarea"
+					cols="10"
+					rows="3"
+					label="PLG_CONTENT_FTDAPI_DISPLAY_INCLUDEDARTICLES_LBL"
+					description="PLG_CONTENT_FTDAPI_DISPLAY_INCLUDEDARTICLES_DESC" />
+				<field
+					name="output"
+					type="list"
+					class="btn-group"
+					default="0"
+					label="PLG_CONTENT_FTDAPI_DISPLAY_LOCATION_LBL"
+					description="PLG_CONTENT_FTDAPI_DISPLAY_LOCATION_DESC">
+					<option value="0">PLG_CONTENT_FTDAPI_DISPLAY_LOCATION_AFTERTITLE</option>
+            		<option value="1">PLG_CONTENT_FTDAPI_DISPLAY_LOCATION_BEFORECONTENT</option>
+            		<option value="2">PLG_CONTENT_FTDAPI_DISPLAY_LOCATION_AFTERCONTENT</option>
+            		<option value="3">PLG_CONTENT_FTDAPI_DISPLAY_LOCATION_PLACEHOLDER</option>
+            	</field>
+            	<field
+					name="show_gmaps_links"
+					type="list"
+					class="btn-group"
+					default="1"
+					label="PLG_CONTENT_FTDAPI_SHOW_GMAPS_LINKS_LBL"
+					description="PLG_CONTENT_FTDAPI_SHOW_GMAPS_LINKS_DESC">
+					<option value="0">JNO</option>
+            		<option value="1">JYES</option>
+            	</field>
+            	<field
+					name="show_list"
+					type="list"
+					class="btn-group"
+					default="1"
+					label="PLG_CONTENT_FTDAPI_SHOW_LIST_LBL"
+					description="PLG_CONTENT_FTDAPI_SHOW_LIST_DESC">
+					<option value="0">JNO</option>
+            		<option value="1">JYES</option>
+            	</field>
+            	<field
+					name="show_map"
+					type="list"
+					class="btn-group"
+					default="0"
+					label="PLG_CONTENT_FTDAPI_SHOW_MAP_LBL"
+					description="PLG_CONTENT_FTDAPI_SHOW_MAP_DESC">
+					<option value="0">JNO</option>
+            		<option value="1">JYES</option>
+            	</field>
+            	<field
+					name="map_height"
+					type="text"
+					class="btn-group"
+					default="320"
+					label="PLG_CONTENT_FTDAPI_MAP_HEIGHT_LBL"
+					description="PLG_CONTENT_FTDAPI_MAP_HEIGHT_DESC"
+				/>
+				<field
+					name="map_provider"
+					type="list"
+					class="btn-group"
+					default="google"
+					label="PLG_CONTENT_FTDAPI_MAP_PROVIDER_LBL"
+					description="PLG_CONTENT_FTDAPI_MAP_PROVIDER_DESC">
+					<option value="osm">OSM</option>
+            		<option value="google">Google</option>
+            	</field>
+            	<field
+					name="show_animations"
+					type="list"
+					class="btn-group"
+					default="0"
+					label="PLG_CONTENT_FTDAPI_SHOW_ANIMATIONS_LBL"
+					description="PLG_CONTENT_FTDAPI_SHOW_ANIMATIONS_DESC">
+					<option value="0">JNO</option>
+            		<option value="1">JYES</option>
+            	</field>
+			</fieldset>
+		</fields>
+	</config>
+	<updateservers>
+        <server type="extension" priority="1" name="FTDapi Plugin Update Stream">http://extensions.tecmedien.com/plg_content_ftdapi/update.xml</server>
+    </updateservers>
+</extension>

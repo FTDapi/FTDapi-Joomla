@@ -1,0 +1,18 @@
+.ftd-container {margin-top: 20px; margin-bottom: 20px;}
+.ftd-headline {line-height: 30px;}
+.ftd-headline img {vertical-align:middle; width:60px;padding-right: 5px;}
+#ftd-summary {text-align: right;}
+#ftd-summary ul { list-style:none; margin: 0px 0px 10px 0px; padding-top: 10px;}
+#ftd-summary ul li {display:inline;}
+#ftd-summary ul li a {text-decoration:none;}
+#ftd-summary ul li a:hover { text-decoration:none;}
+#ftd-summary .nundso {}
+#ftd-summary .nundso img {vertical-align:middle; width:107px; height: 60px;}
+#ftd-summary .approved {padding-right:10px;}
+#ftd-summary .approved img {vertical-align:middle; width:49px; height: 60px;}
+.ftd-items {border-top: 1px solid #eee; border-bottom: 1px solid #eee; margin:10px 0px 10px 0px; padding:10px 0px 0px 10px;}
+.ftd-item {margin-bottom: 20px;}
+.ftd-cowork{text-align: right; font-weight: bold;}
+.provider-logo {vertical-align:middle;width:60px;padding-right: 5px;}
+/*helpers*/
+.boldify{font-weight: bold;}

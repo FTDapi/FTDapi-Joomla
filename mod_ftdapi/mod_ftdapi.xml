@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1" client="site" method="upgrade">
+	<name>MOD_FTDAPI</name>
+	<author>Christian Hent</author>
+	<creationDate>April 2015</creationDate>
+	<copyright>Copyright (C) tec-promotion GmbH. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>hent.dev@googlemail.com</authorEmail>
+	<authorUrl>http://www.tec-promotion.de</authorUrl>
+	<version>1.9.3</version>
+	<description>MOD_FTDAPI_XML_DESCRIPTION</description>
+	<files>
+		<filename module="mod_ftdapi">mod_ftdapi.php</filename>
+		<folder>layouts</folder>
+		<folder>cache</folder>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+		<filename>mod_ftdapi.xml</filename>
+	</files>
+	<media folder="media" destination="mod_ftdapi">
+		<folder>js</folder>
+		<folder>css</folder>
+		<filename>index.html</filename>
+	</media>
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.mod_ftdapi.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.mod_ftdapi.sys.ini</language>
+		<language tag="de-DE">language/de-DE/de-DE.mod_ftdapi.ini</language>
+		<language tag="de-DE">language/de-DE/de-DE.mod_ftdapi.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+			</fieldset>
+			<fieldset name="api" label="MOD_FTDAPI_API_FIELDSET_LBL">
+				<field
+					name="token"
+					type="text"
+					class="btn-group"
+					default="0"
+					label="MOD_FTDAPI_TOKEN_LBL"
+					description="MOD_FTDAPI_TOKEN_DESC"
+					required="required"
+				/>
+				<field
+					name="time_interval"
+					type="list"
+					class="btn-group"
+					default="week"
+					label="MOD_FTDAPI_TIMEINTERVAL_LBL"
+					description="MOD_FTDAPI_TIMEINTERVAL_DESC">
+					<option value="today">MOD_FTDAPI_TIMEINTERVAL_TODAY</option>
+            		<option value="tomorrow">MOD_FTDAPI_TIMEINTERVAL_TOMORROW</option>
+            		<option value="twodays">MOD_FTDAPI_TIMEINTERVAL_2DAYS</option>
+            		<option value="week">MOD_FTDAPI_TIMEINTERVAL_1WEEK</option>
+            	</field>
+				<field
+					name="cache"
+					type="text"
+					class="btn-group"
+					default="360"
+					label="MOD_FTDAPI_CACHE_LBL"
+					description="MOD_FTDAPI_CACHE_DESC"
+				/>
+			</fieldset>
+			<fieldset name="display" label="MOD_FTDAPI_DISPLAY_FIELDSET_LBL">
+				<field
+					name="layout"
+					type="list"
+					class="btn-group"
+					default="0"
+					label="MOD_FTDAPI_LAYOUT_LBL"
+					description="MOD_FTDAPI_LAYOUT_DESC">
+					<option value="0">MOD_FTDAPI_LAYOUT_REGION</option>
+            		<option value="1">MOD_FTDAPI_LAYOUT_PROVIDER</option>
+            		<option value="2">MOD_FTDAPI_LAYOUT_TRUCK</option>
+            	</field>
+            	<field
+					name="truck_id"
+					type="text"
+					class="btn-group"
+					default="0"
+					label="MOD_FTDAPI_TRUCKID_LBL"
+					description="MOD_FTDAPI_TRUCKID_DESC"
+				/>
+				<field
+					name="show_gmaps_links"
+					type="list"
+					class="btn-group"
+					default="1"
+					label="MOD_FTDAPI_SHOW_GMAPS_LINKS_LBL"
+					description="MOD_FTDAPI_SHOW_GMAPS_LINKS_DESC">
+					<option value="0">JNO</option>
+            		<option value="1">JYES</option>
+            	</field>
+            	<field
+					name="show_list"
+					type="list"
+					class="btn-group"
+					default="1"
+					label="MOD_FTDAPI_SHOW_LIST_LBL"
+					description="MOD_FTDAPI_SHOW_LIST_DESC">
+					<option value="0">JNO</option>
+            		<option value="1">JYES</option>
+            	</field>
+            	<field
+					name="show_map"
+					type="list"
+					class="btn-group"
+					default="0"
+					label="MOD_FTDAPI_SHOW_MAP_LBL"
+					description="MOD_FTDAPI_SHOW_MAP_DESC">
+					<option value="0">JNO</option>
+            		<option value="1">JYES</option>
+            	</field>
+            	<field
+					name="map_height"
+					type="text"
+					class="btn-group"
+					default="320"
+					label="MOD_FTDAPI_MAP_HEIGHT_LBL"
+					description="MOD_FTDAPI_MAP_HEIGHT_DESC"
+				/>
+				<field
+					name="map_provider"
+					type="list"
+					class="btn-group"
+					default="google"
+					label="MOD_FTDAPI_MAP_PROVIDER_LBL"
+					description="MOD_FTDAPI_MAP_PROVIDER_DESC">
+					<option value="osm">OSM</option>
+            		<option value="google">Google</option>
+            	</field>
+            	<field
+					name="show_animations"
+					type="list"
+					class="btn-group"
+					default="0"
+					label="MOD_FTDAPI_SHOW_ANIMATIONS_LBL"
+					description="MOD_FTDAPI_SHOW_ANIMATIONS_DESC">
+					<option value="0">JNO</option>
+            		<option value="1">JYES</option>
+            	</field>
+			</fieldset>
+			<fieldset
+				name="advanced">
+				<field
+					name="moduleclass_sfx"
+					type="textarea"
+					rows="3"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+			</fieldset>
+		</fields>
+	</config>
+	<updateservers>
+        <server type="extension" priority="1" name="FTDapi Module Update Stream">http://extensions.tecmedien.com/mod_ftdapi/update.xml</server>
+    </updateservers>
+</extension>
