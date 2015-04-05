@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
 
 $app    = JFactory::getApplication();
 $doc    = $app->getDocument();
-$doc->addStyleSheet(JURI::root().'media/plg_content_ftdapi/css/ftd.css');
+$doc->addStyleSheet(JURI::root().'/media/plg_content_ftdapi/css/ftd.css');
 ?>
 <?php if ($displayData['plg_params']->get('show_list', 1)) : ?>
 <div class="ftd-container plg">

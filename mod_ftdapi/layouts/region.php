@@ -1,7 +1,7 @@
 <?php
 /**
- * @package     Joomla.Plugin
- * @subpackage  Content.FTDapi
+ * @package     Joomla.Site
+ * @subpackage  Module.FTDapi
  * @version     1.9.3
  *
  * @copyright   Copyright (C) 2014-2015 tec-promotion GmbH. All rights reserved.

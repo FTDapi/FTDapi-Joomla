@@ -23,12 +23,18 @@ abstract class ModFtdapiHelper
 		$cacheFile = JFile::makeSafe($module->id.'.json');
 		$cacheFilePath = JPath::clean(JPATH_ROOT . '/modules/mod_ftdapi/cache/' . $cacheFile);
 
+		// Prüfen ob Cache Datei existiert
 		if(JFile::exists($cacheFilePath))
 		{
 			$fileinfos = stat($cacheFilePath);
 
+			// Alter des Caches prüfen
 			if ($fileinfos[9] > (time() - (60 * $params->get('cache'))))
 			{
+				/*
+				* Cache ist NICHT zu alt, kein API Request erforderlich.
+				* Die Daten werden direkt aus Cache geladen.
+				*/
 				if(!file_get_contents($cacheFilePath))
 				{
 					$app = JFactory::getApplication();
@@ -39,6 +45,7 @@ abstract class ModFtdapiHelper
 
 				$result = json_decode(file_get_contents($cacheFilePath), true);
 
+				// Sonderfall, nur einen Truck raussuchen
 				if ($params->get('truck_id') != '0')
 				{
 					$result = ModFtdapiHelper::_search($result, 'truckid', $params->get('truck_id'));
@@ -47,11 +54,15 @@ abstract class ModFtdapiHelper
 				return $result;
 				
 			} else {
-
+				/*
+				* Cache ist zu alt, API Request erforderlich.
+				* Neuer Cache wird angelegt.
+				*/
 				$result =  ModFtdapiHelper::_getFtdDataFromApi($params);
 
 				if ($result)
 				{
+					// Sonderfall, nur einen Truck raussuchen
 					if ($params->get('truck_id') != '0')
 					{
 						$result = ModFtdapiHelper::_search($result, 'truckid', $params->get('truck_id'));
@@ -65,10 +76,16 @@ abstract class ModFtdapiHelper
 		}
 		else 
 		{
+			/*
+			* Kein Cache vorhanden, API Request erforderlich.
+			* Neuer Cache wird angelegt.
+			*/
+
 			$result =  ModFtdapiHelper::_getFtdDataFromApi($params);
 
 			if ($result)
 			{
+				// Sonderfall, nur einen Truck raussuchen
 				if ($params->get('truck_id') != '0')
 				{
 					$result = ModFtdapiHelper::_search($result, 'truckid', $params->get('truck_id'));
@@ -89,7 +106,7 @@ abstract class ModFtdapiHelper
 		$http = isset($http) ? $http : new JHttp($options);
 		$input = isset($input) ? $input : JFactory::getApplication()->input;
 
-        $api_url = 'http://www.food-trucks-deutschland.de/api/v12.php?tp=operatortour&tk=' . $params->get('token') . '&dt=' . $params->get('time_interval');
+        $api_url = 'http://www.food-trucks-deutschland.de/api/v13.php?tp=operatortour&tk=' . $params->get('token') . '&dt=' . $params->get('time_interval');
 
         try 
 		{
@@ -101,7 +118,25 @@ abstract class ModFtdapiHelper
 			
 				if ($result->error)
 				{
-					$app->enqueueMessage(JText::_('MOD_FTDAPI_API_ERROR'), 'error');
+					if ($result->code === "99") 
+					{
+						$app->enqueueMessage(JText::_('MOD_FTDAPI_API_ERROR_NOACCESS'), 'error');
+					}
+
+					if ($result->code === "02") 
+					{
+						$app->enqueueMessage(JText::_('MOD_FTDAPI_API_ERROR_NODATA'), 'info');
+					}
+
+					if ($result->code === "04") 
+					{
+						$app->enqueueMessage(JText::_('MOD_FTDAPI_API_ERROR_SYNTAX'), 'error');
+					}
+
+					if (!$result->code) 
+					{
+						$app->enqueueMessage(JText::_('MOD_FTDAPI_API_ERROR'), 'error');
+					}
 
 					return false;
 				}

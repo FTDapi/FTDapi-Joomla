@@ -280,7 +280,7 @@ class PlgContentFtdapi extends JPlugin
         
         $plgParams->loadString($plg->params);
 
-        $api_url = 'http://www.food-trucks-deutschland.de/api/v12.php?tp=operatortour&tk=' . $plgParams->get('token') . '&dt=' . $plgParams->get('time_interval');
+        $api_url = 'http://www.food-trucks-deutschland.de/api/v13.php?tp=operatortour&tk=' . $plgParams->get('token') . '&dt=' . $plgParams->get('time_interval');
 
         try 
 		{
@@ -292,7 +292,26 @@ class PlgContentFtdapi extends JPlugin
 			
 				if ($result->error)
 				{
-					$this->app->enqueueMessage(JText::_('PLG_CONTENT_FTDAPI_API_ERROR'), 'error');
+					if ($result->code === "99") 
+					{
+						$this->app->enqueueMessage(JText::_('PLG_CONTENT_FTDAPI_API_ERROR_NOACCESS'), 'error');
+					}
+
+					if ($result->code === "02") 
+					{
+						$this->app->enqueueMessage(JText::_('PLG_CONTENT_FTDAPI_API_ERROR_NODATA'), 'info');
+					}
+
+					if ($result->code === "04") 
+					{
+						$this->app->enqueueMessage(JText::_('PLG_CONTENT_FTDAPI_API_ERROR_SYNTAX'), 'error');
+					}
+
+					if (!$result->code) 
+					{
+						$this->app->enqueueMessage(JText::_('PLG_CONTENT_FTDAPI_API_ERROR'), 'error');
+					}
+
 
 					return false;
 				}

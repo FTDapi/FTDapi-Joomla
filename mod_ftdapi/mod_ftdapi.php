@@ -12,6 +12,7 @@
 
 defined('_JEXEC') or die;
 
+// Include the helper functions only once
 require_once __DIR__ . '/helper.php';
 
 $result = ModFtdapiHelper::_getFtdData($params);
