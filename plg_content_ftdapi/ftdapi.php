@@ -31,7 +31,7 @@ class PlgContentFtdapi extends JPlugin
 
 		jimport('joomla.filesystem.file');
 		jimport('joomla.filesystem.folder');
-		$this->cacheFile = JFile::makeSafe('cache.json');
+		$this->cacheFile = JFile::makeSafe('cache.txt');
 		$this->cacheFilePath = JPath::clean(JPATH_ROOT . '/plugins/content/ftdapi/cache/' . $this->cacheFile);
 
 		$this->regexpr = '/{'.$this->placeholder.'.*?}/i';

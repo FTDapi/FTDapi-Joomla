@@ -20,7 +20,7 @@ abstract class ModFtdapiHelper
 		jimport('joomla.filesystem.folder');
 
 		$module = JModuleHelper::getModule( 'mod_ftdapi' );
-		$cacheFile = JFile::makeSafe($module->id.'.json');
+		$cacheFile = JFile::makeSafe($module->id.'.txt');
 		$cacheFilePath = JPath::clean(JPATH_ROOT . '/modules/mod_ftdapi/cache/' . $cacheFile);
 
 		// Prüfen ob Cache Datei existiert
@@ -160,7 +160,7 @@ abstract class ModFtdapiHelper
 	protected function _renewCache($data) 
 	{
 		$module = JModuleHelper::getModule( 'mod_ftdapi' );
-		$cacheFile = JFile::makeSafe($module->id.'.json');
+		$cacheFile = JFile::makeSafe($module->id.'.txt');
 		$cacheFilePath = JPath::clean(JPATH_ROOT . '/modules/mod_ftdapi/cache/' . $cacheFile);
 
 		file_put_contents($cacheFilePath, json_encode($data));
