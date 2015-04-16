@@ -284,7 +284,7 @@ class PlgContentFtdapi extends JPlugin
 
         try 
 		{
-			$response = $this->http->post($api_url, null);
+			$response = $this->http->get($api_url, null);
 
 			if ($response->code === 200)
 			{

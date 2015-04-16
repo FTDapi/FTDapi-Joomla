@@ -110,7 +110,7 @@ abstract class ModFtdapiHelper
 
         try 
 		{
-			$response = $http->post($api_url, null);
+			$response = $http->get($api_url, null);
 
 			if ($response->code === 200)
 			{
