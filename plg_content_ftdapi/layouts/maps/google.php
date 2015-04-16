@@ -30,7 +30,7 @@ ftd(document).ready(function(){
 	plgFTD.bounds = new google.maps.LatLngBounds();
 	plgFTD.oms = new OverlappingMarkerSpiderfier(plgFTD.map,{markersWontMove: true,markersWontHide: true,keepSpiderfied: true,circleSpiralSwitchover: 20,legWeight: 0});
 	plgFTD.iw = new google.maps.InfoWindow();
-	plgFTD.url = '<?php echo JURI::root() . "plugins/content/ftdapi/cache/cache.json";?>';
+	plgFTD.url = '<?php echo JURI::root() . "plugins/content/ftdapi/cache/cache.txt";?>';
 	plgFTD.jqxhr = ftd.getJSON( plgFTD.url, function() {})
 	.done(function(data) {
 		if (plgFTD.markerClusterer){

@@ -31,7 +31,7 @@ ftd(document).ready(function(){
     plgFTD.osm = L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
     }).addTo(plgFTD.map);
-    plgFTD.url = '<?php echo JURI::root() . "plugins/content/ftdapi/cache/cache.json";?>';
+    plgFTD.url = '<?php echo JURI::root() . "plugins/content/ftdapi/cache/cache.txt";?>';
     plgFTD.jqxhr = ftd.getJSON( plgFTD.url, function() {})
     .done(function(data) {
         // marker
