@@ -23,7 +23,7 @@ $doc->addStyleSheet('http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster
 $doc->addStyleSheet('http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css');
 
 $module = JModuleHelper::getModule( 'mod_ftdapi' );
-$cacheFile = JFile::makeSafe($module->id.'.json');
+$cacheFile = JFile::makeSafe($module->id.'.txt');
 $cacheFilePath = JPath::clean(JPATH_ROOT . '/modules/mod_ftdapi/cache/' . $cacheFile);
 ?>
 <script type="text/javascript">

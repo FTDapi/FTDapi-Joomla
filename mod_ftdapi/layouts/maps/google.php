@@ -21,7 +21,7 @@ $doc->addScript('http://google-maps-utility-library-v3.googlecode.com/svn/trunk/
 $doc->addScript('media/mod_ftdapi/js/oms.min.js');
 
 $module = JModuleHelper::getModule( 'mod_ftdapi' );
-$cacheFile = JFile::makeSafe($module->id.'.json');
+$cacheFile = JFile::makeSafe($module->id.'.txt');
 $cacheFilePath = JPath::clean(JPATH_ROOT . '/modules/mod_ftdapi/cache/' . $cacheFile);
 ?>
 <script type="text/javascript">
